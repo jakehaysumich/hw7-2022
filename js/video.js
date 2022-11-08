@@ -26,14 +26,14 @@ document.querySelector("#slower").addEventListener("click", function(){
 })
 
 document.querySelector("#faster").addEventListener("click", function(){
-	video.playbackRate = video.playbackRate + 1.1*video.playbackRate*.1
+	video.playbackRate = video.playbackRate / .9
 	console.log("sped up to "+video.playbackRate)
 })
 
 document.querySelector("#skip").addEventListener("click", function(){
 	video.currentTime += 10 
 	console.log("Jumped 10 to "+ video.currentTime)
-	if(video.ended == true){video.currentTime = 0;
+	if(video.currentTime>=video.duration){video.currentTime = 0;
 	console.log("Jumped past duration restart to "+video.currentTime)}
 })
 
@@ -49,8 +49,9 @@ document.querySelector("#mute").addEventListener("click", function(){
 })
 
 document.querySelector("#slider").addEventListener("click", function(){
-	video.volume = range.value
-	console.log("volume set to "+video.volume)})
+	video.volume = this.value/100
+	console.log("volume set to "+video.volume)
+	document.querySelector('#volume').innerHTML = video.volume* 100+"%"})
 
 document.querySelector("#vintage").addEventListener("click", function(){
 	video.classList.add("oldSchool")
